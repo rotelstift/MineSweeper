@@ -8,6 +8,7 @@ import { GameField } from '../gameField';
 })
 export class GameFieldComponent implements OnInit {
   cells = 3
+  bomb = 2
   gameField: GameField = {
     table: Array(this.cells).fill("").map(x => {
       return Array.from(Array(this.cells).fill(""))
@@ -21,9 +22,24 @@ export class GameFieldComponent implements OnInit {
     return Array.from(Array(2).fill(this.infinity))
   })
 
+  getRandomInt(max: number): number {
+    return Math.floor(Math.random() * max);
+  }
+
   setBomb(): void {
-    this.gameField.table[0][0] = "💣"
-    this.gameField.table[1][1] = "💣"
+    let i = 0
+    let row = 0
+    let col = 0
+    while (i < this.bomb) {
+      row = this.getRandomInt(this.bomb)
+      col = this.getRandomInt(this.bomb)
+      if (this.gameField.table[row][col] === "💣") {
+        continue
+      } else {
+        this.gameField.table[row][col] = "💣"
+        i++
+      }
+    }
   }
 
   countBomb(row: number, col: number): void {
