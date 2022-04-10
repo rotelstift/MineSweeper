@@ -1,4 +1,3 @@
 export interface GameField {
-  cells: number;
-  boms: number;
+  table: Array<Array<string>>;
 }

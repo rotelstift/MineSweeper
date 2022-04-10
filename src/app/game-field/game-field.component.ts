@@ -7,9 +7,11 @@ import { GameField } from '../gameField';
   styleUrls: ['./game-field.component.css']
 })
 export class GameFieldComponent implements OnInit {
+  cells = 3
   gameField: GameField = {
-    cells: 3,
-    boms: 1
+    table: Array(this.cells).fill("").map(x => {
+      return Array.from(Array(this.cells).fill("💣"))
+    })
   }
 
   constructor() { }
