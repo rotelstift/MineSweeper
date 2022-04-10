@@ -91,6 +91,7 @@ export class GameFieldComponent implements OnInit {
       this.gameCell = this.gameField.table
     } else if (this.checkGoal(this.digged)) {
       alert("You won!")
+      this.gameCell = this.gameField.table
     }
   }
 
