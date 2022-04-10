@@ -16,6 +16,10 @@ export class GameFieldComponent implements OnInit {
   gameCell = Array(this.cells).fill("").map(x => {
     return Array.from(Array(this.cells).fill(""))
   })
+  infinity = Number.NaN
+  digged = Array().fill("").map(x => {
+    return Array.from(Array(2).fill(this.infinity))
+  })
 
   setBomb(): void {
     this.gameField.table[0][0] = "💣"
@@ -55,8 +59,13 @@ export class GameFieldComponent implements OnInit {
     }
   }
 
+  includes(needle: Array<number>, heystack: Array<Array<number>>): boolean {
+    return JSON.stringify(heystack).includes(JSON.stringify(needle))
+  }
+
   checkField(row: number, col: number): void {
     this.gameCell[row][col] = this.gameField.table[row][col]
+    this.digged.push([row, col])
     if (this.gameField.table[row][col] === "💣") {
       alert("Game Over.")
     }
