@@ -10,13 +10,19 @@ export class GameFieldComponent implements OnInit {
   cells = 3
   gameField: GameField = {
     table: Array(this.cells).fill("").map(x => {
-      return Array.from(Array(this.cells).fill("💣"))
+      return Array.from(Array(this.cells).fill(""))
     })
+  }
+
+  setBomb(): void {
+    this.gameField.table[0][0] = "💣"
+    this.gameField.table[1][1] = "💣"
   }
 
   constructor() { }
 
   ngOnInit(): void {
+    this.setBomb()
   }
 
 }
