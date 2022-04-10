@@ -1,0 +1,10 @@
+#gameField {
+  border-collapse: collapse;
+}
+
+#gameField td {
+  border: thin black solid;
+  width: 25px;
+  height: 25px;
+  text-align: center;
+}
