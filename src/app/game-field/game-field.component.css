@@ -1,5 +1,6 @@
 #gameField {
   border-collapse: collapse;
+  background-color: gray;
 }
 
 #gameField td {
@@ -7,4 +8,8 @@
   width: 25px;
   height: 25px;
   text-align: center;
+}
+
+.digged{
+  background-color: white;
 }

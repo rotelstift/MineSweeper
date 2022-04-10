@@ -8,6 +8,7 @@ import { GameField } from '../gameField';
 })
 export class GameFieldComponent implements OnInit {
   cells = 3
+  bomb = 2
   gameField: GameField = {
     table: Array(this.cells).fill("").map(x => {
       return Array.from(Array(this.cells).fill(""))
@@ -16,10 +17,29 @@ export class GameFieldComponent implements OnInit {
   gameCell = Array(this.cells).fill("").map(x => {
     return Array.from(Array(this.cells).fill(""))
   })
+  infinity = Number.NaN
+  digged = Array().fill("").map(x => {
+    return Array.from(Array(2).fill(this.infinity))
+  })
+
+  getRandomInt(max: number): number {
+    return Math.floor(Math.random() * max);
+  }
 
   setBomb(): void {
-    this.gameField.table[0][0] = "💣"
-    this.gameField.table[1][1] = "💣"
+    let i = 0
+    let row = 0
+    let col = 0
+    while (i < this.bomb) {
+      row = this.getRandomInt(this.bomb)
+      col = this.getRandomInt(this.bomb)
+      if (this.gameField.table[row][col] === "💣") {
+        continue
+      } else {
+        this.gameField.table[row][col] = "💣"
+        i++
+      }
+    }
   }
 
   countBomb(row: number, col: number): void {
@@ -55,10 +75,22 @@ export class GameFieldComponent implements OnInit {
     }
   }
 
+  includes(needle: Array<number>, heystack: Array<Array<number>>): boolean {
+    return JSON.stringify(heystack).includes(JSON.stringify(needle))
+  }
+
+  checkGoal(digged: Array<Array<number>>): boolean {
+    return this.cells * this.cells - digged.length === this.bomb
+  }
+
   checkField(row: number, col: number): void {
     this.gameCell[row][col] = this.gameField.table[row][col]
+    this.digged.push([row, col])
     if (this.gameField.table[row][col] === "💣") {
       alert("Game Over.")
+      this.gameCell = this.gameField.table
+    } else if (this.checkGoal(this.digged)) {
+      alert("You won!")
     }
   }
 
