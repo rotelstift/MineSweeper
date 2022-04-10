@@ -19,10 +19,44 @@ export class GameFieldComponent implements OnInit {
     this.gameField.table[1][1] = "💣"
   }
 
+  countBomb(row: number, col: number): void {
+    const start = {
+      "row" : row === 0 ? row : row - 1,
+      "col" : col === 0 ? col : col - 1
+    }
+    const goal = {
+      "row" : row === this.cells - 1 ? row : row + 1,
+      "col" : col === this.cells - 1 ? col : col + 1
+    }
+
+    for (let i = start["row"]; i <= goal["row"]; i++) {
+      for (let j = start["col"]; j <= goal["col"]; j++) {
+        if (this.gameField.table[i][j] === "💣") {
+          // nothing to do...
+        } else if (this.gameField.table[i][j] > 0) {
+          this.gameField.table[i][j]++
+        } else {
+          this.gameField.table[i][j] = 1
+        }
+      }
+    }
+  }
+
+  setCount(): void {
+    for (let row = 0; row < this.cells; row++) {
+      for (let col = 0; col < this.cells; col++) {
+        if (this.gameField.table[row][col] === "💣") {
+          this.countBomb(row, col)
+        }
+      }
+    }
+  }
+
   constructor() { }
 
   ngOnInit(): void {
     this.setBomb()
+    this.setCount()
   }
 
 }

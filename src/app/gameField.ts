@@ -1,3 +1,3 @@
 export interface GameField {
-  table: Array<Array<string>>;
+  table: Array<Array<any>>;
 }
