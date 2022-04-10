@@ -88,6 +88,7 @@ export class GameFieldComponent implements OnInit {
     this.digged.push([row, col])
     if (this.gameField.table[row][col] === "💣") {
       alert("Game Over.")
+      this.gameCell = this.gameField.table
     } else if (this.checkGoal(this.digged)) {
       alert("You won!")
     }
