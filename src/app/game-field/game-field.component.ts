@@ -13,6 +13,9 @@ export class GameFieldComponent implements OnInit {
       return Array.from(Array(this.cells).fill(""))
     })
   }
+  gameCell = Array(this.cells).fill("").map(x => {
+    return Array.from(Array(this.cells).fill(""))
+  })
 
   setBomb(): void {
     this.gameField.table[0][0] = "💣"
@@ -49,6 +52,13 @@ export class GameFieldComponent implements OnInit {
           this.countBomb(row, col)
         }
       }
+    }
+  }
+
+  checkField(row: number, col: number): void {
+    this.gameCell[row][col] = this.gameField.table[row][col]
+    if (this.gameField.table[row][col] === "💣") {
+      alert("Game Over.")
     }
   }
 
