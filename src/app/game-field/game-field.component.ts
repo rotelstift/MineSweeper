@@ -79,11 +79,17 @@ export class GameFieldComponent implements OnInit {
     return JSON.stringify(heystack).includes(JSON.stringify(needle))
   }
 
+  checkGoal(digged: Array<Array<number>>): boolean {
+    return this.cells * this.cells - digged.length === this.bomb
+  }
+
   checkField(row: number, col: number): void {
     this.gameCell[row][col] = this.gameField.table[row][col]
     this.digged.push([row, col])
     if (this.gameField.table[row][col] === "💣") {
       alert("Game Over.")
+    } else if (this.checkGoal(this.digged)) {
+      alert("You won!")
     }
   }
 
