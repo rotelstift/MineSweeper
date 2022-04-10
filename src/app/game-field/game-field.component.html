@@ -1,9 +1,11 @@
 <p>game-field works!</p>
 
-<table>
+<table id="gameField">
   <tbody>
-    <tr *ngFor="let tr of gameField.table">
-      <td *ngFor="let td of tr">{{td}}</td>
+    <tr *ngFor="let tr of gameField.table; index as row">
+      <td *ngFor="let td of tr; index as col" (click)="checkField(row, col)">
+        <span>{{gameCell[row][col]}}</span>
+      </td>
     </tr>
   </tbody>
 </table>
