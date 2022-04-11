@@ -1,4 +1,4 @@
 export interface GameGenerator {
   bomb: number
-  field: number
+  cells: number
 }

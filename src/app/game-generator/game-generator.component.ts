@@ -10,7 +10,7 @@ export class GameGeneratorComponent implements OnInit {
 
   game: GameGenerator ={
     bomb: 2,
-    field: 3
+    cells: 3
   }
 
   constructor() { }
