@@ -30,7 +30,6 @@ export class GameService {
   }
 
   generateField(game: GameGenerator): void {
-    console.log(game.cells)
     this.field.table = Array(game.cells).fill("").map(x => {
       return Array.from(Array(game.cells).fill(""))
     })
@@ -40,7 +39,6 @@ export class GameService {
     this.field.digged = Array().fill("").map(x => {
       return Array.from(Array(2).fill(this.infinity))
     })
-    console.log(this.field.table)
   }
 
   getGenerator(): GameGenerator {

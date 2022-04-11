@@ -22,7 +22,6 @@ export class GameGeneratorComponent implements OnInit {
   }
 
   generateGame(game: GameGenerator): void{
-    console.log(game.cells)
     this.gameService.generateField(game)
   }
 }
