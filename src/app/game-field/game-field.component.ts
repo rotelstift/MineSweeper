@@ -31,8 +31,8 @@ export class GameFieldComponent implements OnInit {
     let row = 0
     let col = 0
     while (i < this.bomb) {
-      row = this.getRandomInt(this.bomb)
-      col = this.getRandomInt(this.bomb)
+      row = this.getRandomInt(this.cells)
+      col = this.getRandomInt(this.cells)
       if (this.gameField.table[row][col] === "💣") {
         continue
       } else {
