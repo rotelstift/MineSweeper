@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { GameService } from '../game.service';
 import { GameGenerator } from '../gameGenerator';
 
 @Component({
@@ -8,14 +9,20 @@ import { GameGenerator } from '../gameGenerator';
 })
 export class GameGeneratorComponent implements OnInit {
 
-  game: GameGenerator ={
+  @Input() game: GameGenerator ={
     bomb: 2,
     cells: 3
   }
 
-  constructor() { }
+  constructor(
+    private gameService: GameService
+  ) { }
 
   ngOnInit(): void {
   }
 
+  generateGame(game: GameGenerator): void{
+    console.log(game.cells)
+    this.gameService.generateField(game)
+  }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GameService } from '../game.service';
 import { GameField } from '../gameField';
 
 @Component({
@@ -7,20 +8,11 @@ import { GameField } from '../gameField';
   styleUrls: ['./game-field.component.css']
 })
 export class GameFieldComponent implements OnInit {
-  cells = 3
-  bomb = 2
-  gameField: GameField = {
-    table: Array(this.cells).fill("").map(x => {
-      return Array.from(Array(this.cells).fill(""))
-    })
-  }
-  gameCell = Array(this.cells).fill("").map(x => {
-    return Array.from(Array(this.cells).fill(""))
-  })
-  infinity = Number.NaN
-  digged = Array().fill("").map(x => {
-    return Array.from(Array(2).fill(this.infinity))
-  })
+  cells = this.gameService.generator.cells
+  bomb = this.gameService.generator.bomb
+  gameField = this.gameService.getField()
+  gameCell = this.gameField.gameCells
+  digged = this.gameField.digged
 
   getRandomInt(max: number): number {
     return Math.floor(Math.random() * max);
@@ -97,7 +89,9 @@ export class GameFieldComponent implements OnInit {
     }
   }
 
-  constructor() { }
+  constructor(
+    private gameService: GameService
+  ) { }
 
   ngOnInit(): void {
     this.setBomb()
