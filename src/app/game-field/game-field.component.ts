@@ -85,7 +85,9 @@ export class GameFieldComponent implements OnInit {
 
   checkField(row: number, col: number): void {
     this.gameCell[row][col] = this.gameField.table[row][col]
-    this.digged.push([row, col])
+    if (!this.includes([row, col], this.digged)) {
+      this.digged.push([row, col])
+    }
     if (this.gameField.table[row][col] === "💣") {
       alert("Game Over.")
       this.gameCell = this.gameField.table
