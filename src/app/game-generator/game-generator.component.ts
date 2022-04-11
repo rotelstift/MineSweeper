@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GameGenerator } from '../gameGenerator';
 
 @Component({
   selector: 'app-game-generator',
@@ -6,6 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./game-generator.component.css']
 })
 export class GameGeneratorComponent implements OnInit {
+
+  game: GameGenerator ={
+    bomb: 2,
+    field: 3
+  }
 
   constructor() { }
 
