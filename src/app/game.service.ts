@@ -9,14 +9,14 @@ import { GameGenerator } from './gameGenerator';
 export class GameService {
   infinity = Number.NaN
   generatorComponent = new GameGeneratorComponent(this)
-  generator = this.generatorComponent.getGamePropaty()
+  propaty = this.generatorComponent.getGamePropaty()
 
   field: GameField ={
-    table: Array(this.generator.cells).fill("").map(x => {
-      return Array.from(Array(this.generator.cells).fill(""))
+    table: Array(this.propaty.cells).fill("").map(x => {
+      return Array.from(Array(this.propaty.cells).fill(""))
     }),
-    gameCells: Array(this.generator.cells).fill("").map(x => {
-      return Array.from(Array(this.generator.cells).fill(""))
+    gameCells: Array(this.propaty.cells).fill("").map(x => {
+      return Array.from(Array(this.propaty.cells).fill(""))
     }),
     digged: Array().fill("").map(x => {
       return Array.from(Array(2).fill(this.infinity))
@@ -30,12 +30,12 @@ export class GameService {
   }
 
   generateField(game: GameGenerator): void {
-    this.generator = game
-    this.field.table = Array(this.generator.cells).fill("").map(x => {
-      return Array.from(Array(this.generator.cells).fill(""))
+    this.propaty = game
+    this.field.table = Array(this.propaty.cells).fill("").map(x => {
+      return Array.from(Array(this.propaty.cells).fill(""))
     })
-    this.field.gameCells = Array(this.generator.cells).fill("").map(x => {
-      return Array.from(Array(this.generator.cells).fill(""))
+    this.field.gameCells = Array(this.propaty.cells).fill("").map(x => {
+      return Array.from(Array(this.propaty.cells).fill(""))
     })
     this.field.digged = Array().fill("").map(x => {
       return Array.from(Array(2).fill(this.infinity))
@@ -43,8 +43,6 @@ export class GameService {
 
     this.setBomb()
     this.setCount()
-
-    console.log(this.field.gameCells)
   }
 
   getRandomInt(max: number): number {
@@ -55,9 +53,9 @@ export class GameService {
     let i = 0
     let row = 0
     let col = 0
-    while (i < this.generator.bomb) {
-      row = this.getRandomInt(this.generator.cells)
-      col = this.getRandomInt(this.generator.cells)
+    while (i < this.propaty.bomb) {
+      row = this.getRandomInt(this.propaty.cells)
+      col = this.getRandomInt(this.propaty.cells)
       if (this.field.table[row][col] === "💣") {
         continue
       } else {
@@ -73,8 +71,8 @@ export class GameService {
       "col" : col === 0 ? col : col - 1
     }
     const goal = {
-      "row" : row === this.generator.cells - 1 ? row : row + 1,
-      "col" : col === this.generator.cells - 1 ? col : col + 1
+      "row" : row === this.propaty.cells - 1 ? row : row + 1,
+      "col" : col === this.propaty.cells - 1 ? col : col + 1
     }
 
     for (let i = start["row"]; i <= goal["row"]; i++) {
@@ -91,8 +89,8 @@ export class GameService {
   }
 
   setCount(): void {
-    for (let row = 0; row < this.generator.cells; row++) {
-      for (let col = 0; col < this.generator.cells; col++) {
+    for (let row = 0; row < this.propaty.cells; row++) {
+      for (let col = 0; col < this.propaty.cells; col++) {
         if (this.field.table[row][col] === "💣") {
           this.countBomb(row, col)
         }
@@ -101,6 +99,6 @@ export class GameService {
   }
 
   getGenerator(): GameGenerator {
-    return this.generator
+    return this.propaty
   }
 }
