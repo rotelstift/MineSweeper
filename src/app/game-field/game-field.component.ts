@@ -8,8 +8,6 @@ import { GameField } from '../gameField';
   styleUrls: ['./game-field.component.css']
 })
 export class GameFieldComponent implements OnInit {
-  cells = this.gameService.propaty.cells
-  bomb = this.gameService.propaty.bomb
   gameField = this.gameService.getField()
 
   includes(needle: Array<number>, heystack: Array<Array<number>>): boolean {
@@ -17,7 +15,7 @@ export class GameFieldComponent implements OnInit {
   }
 
   checkGoal(digged: Array<Array<number>>): boolean {
-    return this.cells * this.cells - digged.length === this.bomb
+    return this.gameService.propaty.cells * this.gameService.propaty.cells - digged.length === this.gameService.propaty.bomb
   }
 
   checkField(row: number, col: number): void {
