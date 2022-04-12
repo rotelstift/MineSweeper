@@ -23,7 +23,11 @@ export class GameGeneratorComponent implements OnInit {
   }
 
   generateGame(gamePropaty: GameGenerator): void{
-    this.gameService.generateField(gamePropaty)
+    if (gamePropaty.cells ** 2 <= gamePropaty.bomb) {
+      alert("爆弾の数が全体のマスの数より小さくなるようにしてください")
+    } else {
+      this.gameService.generateField(gamePropaty)
+    }
   }
 
   getGamePropaty(): GameGenerator {
