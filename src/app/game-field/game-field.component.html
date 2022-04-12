@@ -6,7 +6,7 @@
         (click)="checkField(row, col)"
         [class.digged]="includes([row, col], digged)"
       >
-        <span>{{gameCell[row][col]}}</span>
+        <span>{{gameField.gameCells[row][col]}}</span>
       </td>
     </tr>
   </tbody>
