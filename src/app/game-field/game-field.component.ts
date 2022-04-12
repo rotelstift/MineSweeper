@@ -11,7 +11,6 @@ export class GameFieldComponent implements OnInit {
   cells = this.gameService.propaty.cells
   bomb = this.gameService.propaty.bomb
   gameField = this.gameService.getField()
-  digged = this.gameField.digged
 
   includes(needle: Array<number>, heystack: Array<Array<number>>): boolean {
     return JSON.stringify(heystack).includes(JSON.stringify(needle))
@@ -23,13 +22,13 @@ export class GameFieldComponent implements OnInit {
 
   checkField(row: number, col: number): void {
     this.gameField.gameCells[row][col] = this.gameField.table[row][col]
-    if (!this.includes([row, col], this.digged)) {
-      this.digged.push([row, col])
+    if (!this.includes([row, col], this.gameField.digged)) {
+      this.gameField.digged.push([row, col])
     }
     if (this.gameField.table[row][col] === "💣") {
       alert("Game Over.")
       this.gameField.gameCells = this.gameField.table
-    } else if (this.checkGoal(this.digged)) {
+    } else if (this.checkGoal(this.gameField.digged)) {
       alert("You won!")
       this.gameField.gameCells = this.gameField.table
     }
