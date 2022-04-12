@@ -26,7 +26,7 @@ export class GameGeneratorComponent implements OnInit {
     this.gameService.generateField(game)
   }
 
-  getGame(): GameGenerator {
+  getGamePropaty(): GameGenerator {
     return this.gamePropaty
   }
 }

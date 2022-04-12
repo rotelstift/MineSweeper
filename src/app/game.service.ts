@@ -9,7 +9,7 @@ import { GameGenerator } from './gameGenerator';
 export class GameService {
   infinity = Number.NaN
   generatorComponent = new GameGeneratorComponent(this)
-  generator = this.generatorComponent.getGame()
+  generator = this.generatorComponent.getGamePropaty()
 
   field: GameField ={
     table: Array(this.generator.cells).fill("").map(x => {
