@@ -9,7 +9,7 @@ import { GameGenerator } from '../gameGenerator';
 })
 export class GameGeneratorComponent implements OnInit {
 
-  @Input() game: GameGenerator = {
+  @Input() gamePropaty: GameGenerator = {
     bomb: 2,
     cells: 5
   }
@@ -19,7 +19,7 @@ export class GameGeneratorComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.gameService.generateField(this.game)
+    this.gameService.generateField(this.gamePropaty)
   }
 
   generateGame(game: GameGenerator): void{
@@ -27,6 +27,6 @@ export class GameGeneratorComponent implements OnInit {
   }
 
   getGame(): GameGenerator {
-    return this.game
+    return this.gamePropaty
   }
 }
