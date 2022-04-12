@@ -8,8 +8,8 @@ import { GameField } from '../gameField';
   styleUrls: ['./game-field.component.css']
 })
 export class GameFieldComponent implements OnInit {
-  cells = this.gameService.generator.cells
-  bomb = this.gameService.generator.bomb
+  cells = this.gameService.propaty.cells
+  bomb = this.gameService.propaty.bomb
   gameField = this.gameService.getField()
   gameCell = this.gameField.gameCells
   digged = this.gameField.digged
