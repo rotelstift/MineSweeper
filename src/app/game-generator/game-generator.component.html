@@ -1,0 +1,4 @@
+<p><label for="cells">一辺のマスの数</label><input type="number" id="cells" [(ngModel)]="gamePropaty.cells" placeholder="cells"></p>
+<p>全体のマスの数 {{gamePropaty.cells * gamePropaty.cells}}</p>
+<p><label for="bomb">爆弾の数</label><input type="number" id="bomb" [(ngModel)]="gamePropaty.bomb" placeholder="bomb"></p>
+<p><button (click)="generateGame(gamePropaty)">作成！</button></p>

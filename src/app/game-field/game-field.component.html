@@ -4,9 +4,9 @@
       <td
         *ngFor="let td of tr; index as col"
         (click)="checkField(row, col)"
-        [class.digged]="includes([row, col], digged)"
+        [class.digged]="includes([row, col], gameField.digged)"
       >
-        <span>{{gameCell[row][col]}}</span>
+        <span>{{gameField.gameCells[row][col]}}</span>
       </td>
     </tr>
   </tbody>
