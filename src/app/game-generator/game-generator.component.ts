@@ -9,9 +9,9 @@ import { GameGenerator } from '../gameGenerator';
 })
 export class GameGeneratorComponent implements OnInit {
 
-  @Input() game: GameGenerator ={
+  @Input() game: GameGenerator = {
     bomb: 2,
-    cells: 3
+    cells: 5
   }
 
   constructor(
@@ -19,9 +19,14 @@ export class GameGeneratorComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.gameService.generateField(this.game)
   }
 
   generateGame(game: GameGenerator): void{
     this.gameService.generateField(game)
+  }
+
+  getGame(): GameGenerator {
+    return this.game
   }
 }
